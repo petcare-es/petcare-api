@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npx tsx watch src/index.ts",
     "container": "docker compose up",
-    "getInContainer": "docker compose exec -it site_erp_api /bin/bash",
+    "getInContainer": "docker compose exec -it petcare_api /bin/bash",
     "migrate": "npx prisma migrate deploy",
     "test": "vitest run",
     "test:watch": "vitest",
