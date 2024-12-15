@@ -7,4 +7,6 @@ export default interface UserRepository {
         "createdAt" | 
         "updatedAt"
     >): Promise<UserType>;
+
+    findByEmail(email: string): Promise<UserType | null>;
 }
