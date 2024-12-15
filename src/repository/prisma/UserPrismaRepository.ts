@@ -23,4 +23,11 @@ export default class UserPrismaRepository implements UserRepository {
 
         return user;
     }
+
+    public async findByEmail(email: string): Promise<UserType | null> {
+        return await prisma.user.findUnique({
+            where: { email }
+        });
+    }
+
 }
