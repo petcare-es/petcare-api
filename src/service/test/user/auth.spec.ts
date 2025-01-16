@@ -40,6 +40,6 @@ describe('Auth service', () => {
           email: user.email,
           password: "senha errada",
         });
-      }).rejects.toBeInstanceOf(ArgumentNotValidError);
+      }).rejects.toThrow(ArgumentNotValidError);
     });
   });
