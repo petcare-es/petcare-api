@@ -15,7 +15,7 @@ describe('Register service', () => {
     });
   
     it('should be able to register a new user', async () => {
-      expect(async () => {
+      await expect(async () => {
         await userService.create({
           email: 'pedro@gmail.com',
           name: 'Pedro',
@@ -31,7 +31,7 @@ describe('Register service', () => {
         password: '123456',
       });
   
-      expect(async () => {
+      await expect(async () => {
         await userService.create({
           name: 'Pedro2',
           email: 'pedro@gmail.com',

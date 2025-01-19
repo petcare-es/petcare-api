@@ -12,7 +12,7 @@ type UserServiceRequest = {
 } 
 
 type UserServiceResponse = {
-    user: UserType;
+    user: UserType
 }
 
 
@@ -34,7 +34,36 @@ export default class UserService {
     }
 
     public async create(req: UserServiceRequest): Promise<UserServiceResponse> {
-        throw new Error("Not Implemented");
+        const {name, email, password} = req;
+        
+        if(!name || !email|| !password){
+            throw new ArgumentNotValidError("Todos os campos (name, email, password) são obrigatórios.");
+        }
+
+        const existingUser = await this.repository.findByEmail(email);
+
+        if(existingUser){
+            throw new ArgumentNotValidError(`O E-mail ${email} já está cadastrado.`);
+        }
+
+        const newUser: UserType = await this.repository.create({
+            name,
+            email,
+            password,
+        });
+
+        const response: UserServiceResponse = {
+            user: {
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email,
+                password: newUser.password,
+                createdAt: newUser.createdAt,
+                updatedAt: newUser.updatedAt,
+            },
+        };
+
+        return response;
     }
 
     public async auth(req: UserAuthServiceRequest): Promise<UserAuthServiceResponse> {

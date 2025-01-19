@@ -14,18 +14,18 @@ describe('Auth service', () => {
     });
   
     it('it should be able to auth a user', async () => {
-        const { user } = await userService.create({
-            email: 'pedro@gmail.com',
-            name: 'Pedro',
-            password: '123456',
-        });
+      const { user } = await userService.create({
+          email: 'pedro@gmail.com',
+          name: 'Pedro',
+          password: '123456',
+      });
 
-      expect(async () => {
+      await expect(async () => {
         await userService.auth({
             email: user.email, 
             password: user.password 
         });
-      }).not.toThrow();
+      }).rejects.toThrow(ArgumentNotValidError);
     });
   
     it('it should not be possible to authenticate with an invalid password', async () => {
@@ -35,11 +35,11 @@ describe('Auth service', () => {
         password: '123456',
       });
   
-      expect(async () => {
+      await expect(async () => {
         await userService.auth({
           email: user.email,
           password: "senha errada",
         });
-      }).rejects.toBeInstanceOf(ArgumentNotValidError);
+      }).rejects.toThrow(ArgumentNotValidError);
     });
   });
