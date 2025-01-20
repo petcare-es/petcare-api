@@ -22,5 +22,19 @@ model User {
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
 
+  pets              Pet[]
+
   @@map("users")
+}
+
+model Pet {
+  id                String            @id @default(uuid())
+  name              String
+  ownerId           String
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             User              @relation(fields: [ownerId], references: [id])
+
+  @@map("pets")
 }
