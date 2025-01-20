@@ -5,13 +5,13 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import env from "../env";
 
-type UserServiceRequest = {
+type UserCreateServiceRequest = {
     name: string;
     email: string;
     password: string;
 } 
 
-type UserServiceResponse = {
+type UserCreateServiceResponse = {
     user: UserType
 }
 
@@ -33,7 +33,7 @@ export default class UserService {
         this.repository = repository;
     }
 
-    public async create(req: UserServiceRequest): Promise<UserServiceResponse> {
+    public async create(req: UserCreateServiceRequest): Promise<UserCreateServiceResponse> {
         const {name, email, password} = req;
         
         if(!name || !email|| !password){
@@ -52,7 +52,7 @@ export default class UserService {
             password,
         });
 
-        const response: UserServiceResponse = {
+        const response: UserCreateServiceResponse = {
             user: {
                 id: newUser.id,
                 name: newUser.name,
