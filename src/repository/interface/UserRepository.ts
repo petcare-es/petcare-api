@@ -9,4 +9,5 @@ export default interface UserRepository {
     >): Promise<UserType>;
 
     findByEmail(email: string): Promise<UserType | null>;
+    findById(id: string): Promise<UserType | null>;
 }

@@ -30,4 +30,10 @@ export default class UserPrismaRepository implements UserRepository {
         });
     }
 
+    public async findById(id: string): Promise<UserType | null> {
+        return await prisma.user.findUnique({
+            where: { id }
+        });
+    }
+
 }
