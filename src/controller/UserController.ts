@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { authSchema, registerSchema } from "lib/zod";
+import { authUserSchema, registerUserSchema } from "lib/zod";
 import UserPrismaRepository from "repository/prisma/UserPrismaRepository";
 import UserService from "service/UserService";
 
@@ -8,7 +8,7 @@ export default class UserController {
         const {
             email,
             password
-        } = authSchema.parse(req.body);
+        } = authUserSchema.parse(req.body);
 
         const userService = new UserService(
             new UserPrismaRepository()
@@ -24,7 +24,7 @@ export default class UserController {
             name, 
             email, 
             password
-        } = registerSchema.parse(req.body);
+        } = registerUserSchema.parse(req.body);
 
         const userService = new UserService(
             new UserPrismaRepository()
