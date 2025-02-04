@@ -50,8 +50,10 @@ export default class PetService {
     public async findByOwner(req: FindPetsByOwnerRequest): Promise<FindPetsByOwnerResponse>{
         const {ownerId} = req;
 
-        if(!await this.userRepository.findById(ownerId)){
-            throw new ArgumentNotValidError()
+        const userFound = await this.userRepository.findById(ownerId);
+
+        if(!userFound){
+            throw new ArgumentNotValidError("");
         }
 
         const pets = await this.repository.findByOwner(ownerId);

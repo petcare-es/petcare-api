@@ -20,7 +20,7 @@ describe('List Pets Service', () => {
         userRepository = new UserInMemoryRepository();
 
         userService = new UserService(userRepository);
-        petService = new PetService(petRepository, userRepository)
+        petService = new PetService(petRepository, userRepository);
 
 
     });
@@ -31,12 +31,12 @@ describe('List Pets Service', () => {
                 name:'Pedro',
                 email:'pedr@gmail.com',
                 password: '123456'
-        })
+        });
 
-        await petService.create({name: 'Jubileu', ownerId: user.id})
-        await petService.create({name: 'Rex', ownerId: user.id})
+        await petService.create({name: 'Jubileu', ownerId: user.id});
+        await petService.create({name: 'Rex', ownerId: user.id});
 
-        const petList = await petService.findByOwner({ownerId: user.id})
+        const petList = await petService.findByOwner({ownerId: user.id});
 
         expect(petList.pets).toBeInstanceOf(Array);
         expect(petList.pets).toHaveLength(2);
@@ -50,17 +50,17 @@ describe('List Pets Service', () => {
             name: 'Maria',
             email: 'mariaa@gmail.com',
             password: '123456'
-        })
+        });
 
         const petList = await petService.findByOwner({ownerId: user.id})
 
         expect(petList.pets).instanceOf(Array);
         expect(petList.pets).toHaveLength(0);
-    })
+    });
 
     it('should throw an erro if owner does not exist', async () =>{
         await expect(async () => {
             await petService.findByOwner({ownerId: 'id-non-existent'})
         }).rejects.toBeInstanceOf(ArgumentNotValidError);
-    })
-})
+    });
+});
