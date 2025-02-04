@@ -23,9 +23,16 @@ export default class PetController {
 
     }
 
-    public async index(req: Request, res: Response) {
-        res.status(500).json({
-            "message": "Rota não implementada"
-        });
+    public async findByOwner(req: Request, res: Response){
+        const {id: ownerId} = idParamSchema.parse(req.params);
+
+        const findPetService = new PetService(
+            new PetPrismaRepository(),
+            new UserPrismaRepository(),
+        );
+
+        const { pets } = await findPetService.findByOwner({ownerId});
+
+        res.status(201).json(pets);
     }
 }
