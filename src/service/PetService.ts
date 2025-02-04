@@ -12,6 +12,14 @@ type PetCreateServiceResponse = {
     pet: PetType;
 }
 
+type FindPetsByOwnerRequest = {
+    ownerId: string;
+}
+
+type FindPetsByOwnerResponse = {
+    pets: PetType[];
+}
+
 export default class PetService {
 
     private repository: PetRepository
@@ -37,5 +45,19 @@ export default class PetService {
         });
 
         return { pet };
+    }
+
+    public async findByOwner(req: FindPetsByOwnerRequest): Promise<FindPetsByOwnerResponse>{
+        const {ownerId} = req;
+
+        const userFound = await this.userRepository.findById(ownerId);
+
+        if(!userFound){
+            throw new ArgumentNotValidError("");
+        }
+
+        const pets = await this.repository.findByOwner(ownerId);
+
+        return { pets };
     }
 }
