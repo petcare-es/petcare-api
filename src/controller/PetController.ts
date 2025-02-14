@@ -33,6 +33,6 @@ export default class PetController {
 
         const { pets } = await findPetService.findByOwner({ownerId});
 
-        res.status(201).json(pets);
+        res.status(200).json(pets);
     }
 }
