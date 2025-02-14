@@ -1,10 +1,9 @@
+import BaseType from "./BaseType";
+
 type UserType = {
-    id: string;
     name: string;
     email: string;
-    password: string;
-    createdAt: Date;
-    updatedAt: Date;         
-}
+    password: string;      
+} & BaseType;
 
 export default UserType;
