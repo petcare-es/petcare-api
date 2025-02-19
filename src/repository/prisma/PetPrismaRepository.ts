@@ -20,6 +20,12 @@ export default class PetPrismaRepository implements PetRepository {
         return pet;
     }
 
+    public async findById(id: string): Promise<PetType | null> {
+        return await prisma.pet.findUnique({
+            where: { id }
+        });
+    }
+
     public async findByOwner(ownerId: string): Promise<PetType[]> {
         return await prisma.pet.findMany({
             where: { ownerId }
