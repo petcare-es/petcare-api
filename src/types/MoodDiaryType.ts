@@ -1,8 +1,9 @@
 import BaseType from "./BaseType";
+import { Mood } from "@prisma/client";
 
 type MoodDiaryType = {
+    mood: Mood; 
     petId: string;
-    content: string; 
     date: Date;
 } & BaseType;
 
