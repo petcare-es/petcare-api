@@ -14,6 +14,16 @@ export default class PetInMemoryRepository implements PetRepository {
         return this.pets.filter(pet => pet.ownerId == ownerId);
     }
 
+    public async findById(id: string): Promise<PetType | null> {
+        const petFound = this.pets.find(pets => pets.id == id);
+
+        if (!petFound) {
+            return null;
+        }
+
+        return petFound;
+    }
+
     public async create({ name, ownerId }: Omit<
         PetType, 
         "id" | 
