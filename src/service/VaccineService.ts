@@ -3,11 +3,11 @@ import VaccineRepository from "repository/interface/VaccineRepository"
 import ArgumentNotValidError from "./error/ArgumentNotValidError";
 import VaccineType from "types/VaccineType";
 
-type FindOwnerByOwnerRequest = {
+type FindVaccineByOwnerRequest = {
     petId: string;
 };
 
-type FindOwnerByOwnerResponse = {
+type FindVaccineByOwnerResponse = {
     vaccines: VaccineType[]
 };
 
@@ -24,7 +24,7 @@ export default class VaccineService {
         this.petRepository = petRepository;
     }
 
-    public async findByOwner(req: FindOwnerByOwnerRequest): Promise<FindOwnerByOwnerResponse>{
+    public async findByOwner(req: FindVaccineByOwnerRequest): Promise<FindVaccineByOwnerResponse>{
         const { petId } = req;
 
         const petFound = await this.petRepository.findById(petId);
