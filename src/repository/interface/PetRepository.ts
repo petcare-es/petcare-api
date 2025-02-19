@@ -8,5 +8,7 @@ export default interface PetRepository {
         "updatedAt"
     >): Promise<PetType>;
 
+    findById(id: string): Promise<PetType | null>;
+
     findByOwner(ownerId: string): Promise<PetType[]>;
 }
