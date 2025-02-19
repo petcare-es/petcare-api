@@ -8,5 +8,6 @@ const vaccineController = new VaccineController();
 vaccinesRoutes.use(ensureAuthentication);
 
 vaccinesRoutes.get("/pet/:id", vaccineController.findByOwner);
+vaccinesRoutes.post("/register/:id", vaccineController.register);
 
 export default vaccinesRoutes;

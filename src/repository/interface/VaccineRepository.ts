@@ -1,6 +1,6 @@
 import VaccineType from "types/VaccineType";
 
-export default interface PetRepository {
+export default interface VaccineRepository {
     create(userData: Omit<
         VaccineType, 
         "id" | 

@@ -11,6 +11,16 @@ type FindVaccineByOwnerResponse = {
     vaccines: VaccineType[]
 };
 
+type VaccineCreateServiceRequest = {
+    name: string;
+    petId: string;
+    location: string;
+};
+
+type VaccineCreateServiceResponse = {
+    vaccine: VaccineType;
+}
+
 export default class VaccineService {
 
     private repository: VaccineRepository;
@@ -36,6 +46,24 @@ export default class VaccineService {
         const vaccines = await this.repository.findByOwner(petId);
 
         return { vaccines };
+    }
+
+    public async create(req: VaccineCreateServiceRequest): Promise<VaccineCreateServiceResponse> {
+        const { name, petId, location} = req;
+
+        const petFound = await this.petRepository.findById(petId);
+
+        if (!petFound) {
+            throw new ArgumentNotValidError("O pet não existe!");
+        }
+
+        const vaccine = await this.repository.create({
+            name,
+            petId,
+            location
+        });
+
+        return { vaccine };
     }
 
 }
