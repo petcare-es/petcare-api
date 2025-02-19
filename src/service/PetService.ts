@@ -53,7 +53,7 @@ export default class PetService {
         const userFound = await this.userRepository.findById(ownerId);
 
         if(!userFound){
-            throw new ArgumentNotValidError("");
+            throw new ArgumentNotValidError("Usuário não encontrado");
         }
 
         const pets = await this.repository.findByOwner(ownerId);

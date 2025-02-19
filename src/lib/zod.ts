@@ -33,3 +33,12 @@ export const registerPetSchema = z.object({
         .string({ required_error: "O nome é requerido" })
         .min(1, { message: "O nome não pode estar vazio" }),
 });
+
+export const registerVaccineSchema = z.object({
+    name: z
+        .string({ required_error: "O nome é requerido" })
+        .min(1, { message: "O nome não pode estar vazio" }),
+    location: z
+        .string({ required_error: "O local da vacina é requerido"})
+        .min(1, {message: "O local não pode estar vazio"})
+})
