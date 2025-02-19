@@ -36,6 +36,7 @@ model Pet {
 
   owner             User              @relation(fields: [ownerId], references: [id])
   vaccines          Vaccine[]
+  appointments      Appointment[]
 
 
   @@map("pets")
@@ -52,4 +53,27 @@ model Vaccine {
   owner             Pet               @relation(fields: [petId], references: [id])
 
   @@map("vaccines")
+}
+
+enum AppointmentTypes {
+  VACINA
+  CONSULTA
+  REMEDIO
+}
+
+model Appointment {
+  id                String            @id @default(uuid())
+
+  name              String
+  location          String
+  petId             String
+  type              AppointmentTypes
+  scheduledDate     DateTime
+
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("appointments")
 }
