@@ -58,6 +58,9 @@ export default class MoodDiaryService {
             throw new ArgumentNotValidError("O pet não existe!");
         }
 
+        if(isNaN(date.getTime())){
+            throw new ArgumentNotValidError("A data é invalida");
+        }
         const moodDiary = await this.repository.create({
             petId,
             mood,
