@@ -42,3 +42,13 @@ export const registerVaccineSchema = z.object({
         .string({ required_error: "O local da vacina é requerido"})
         .min(1, {message: "O local não pode estar vazio"})
 })
+
+export const registerMoodDiarySchema = z.object({
+    mood: z
+        .enum(["NERVOSO", "FELIZ", "CANSADO", "ANCIOSO", "CARINHOSO", "TRISTE"],{ 
+            required_error: "O humor é obrigatório",
+            invalid_type_error: "O humor deve ser um dos valores permitidos",
+        }),
+    date: z
+        .date({required_error: "A data é obrigatória"}) 
+})
