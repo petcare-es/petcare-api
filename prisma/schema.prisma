@@ -36,7 +36,7 @@ model Pet {
 
   owner             User              @relation(fields: [ownerId], references: [id])
   vaccines          Vaccine[]
-
+  moods             MoodDiary[]
 
   @@map("pets")
 }
@@ -52,4 +52,27 @@ model Vaccine {
   owner             Pet               @relation(fields: [petId], references: [id])
 
   @@map("vaccines")
+}
+
+enum Mood{
+  NERVOSO
+  FELIZ
+  CANSADO
+  ANCIOSO
+  CARINHOSO
+  TRISTE
+
+}
+
+model MoodDiary {
+  id                String            @id @default(uuid())
+  mood              Mood
+  petId             String
+  date              DateTime        
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("moods")
 }

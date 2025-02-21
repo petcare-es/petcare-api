@@ -10,7 +10,7 @@ export default class VaccinePrismaRepository implements VaccineRepository {
         "createdAt" | 
         "updatedAt"
     >): Promise<VaccineType> {
-        const Vaccine = await prisma.vaccine.create({
+        const vaccine = await prisma.vaccine.create({
             data: {
                 name,
                 location,
@@ -18,7 +18,7 @@ export default class VaccinePrismaRepository implements VaccineRepository {
             }
         });
 
-        return Vaccine;
+        return vaccine;
     }
 
     public async findByOwner(petId: string): Promise<VaccineType[]> {

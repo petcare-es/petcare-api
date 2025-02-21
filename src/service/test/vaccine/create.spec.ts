@@ -21,12 +21,17 @@ describe('Register service', () => {
       petRepository = new PetInMemoryRepository();
       userRepository = new UserInMemoryRepository();
 
-      vaccineService = new VaccineService(vaccineRepository, petRepository);
+      vaccineService = new VaccineService(
+        vaccineRepository, 
+        petRepository
+      )
       petService = new PetService(
         petRepository,
         userRepository
       )
-      userService = new UserService(userRepository);
+      userService = new UserService(
+        userRepository
+      )
     });
   
     it('should be able to register a new vaccine', async () => {
@@ -56,7 +61,7 @@ describe('Register service', () => {
     it('should not be able to register a new vaccine with an non exist pet', async () => {
         await expect(async () => {
             await vaccineService.create({
-                name: 'Luna', 
+                name: 'Tetano', 
                 petId: 'id-non-existent', 
                 location: 'SobralCity'})
             }).rejects.toBeInstanceOf(ArgumentNotValidError);
