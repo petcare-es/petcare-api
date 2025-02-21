@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "npx tsx watch src/index.ts",
+    "dev": "npm run generate && npm run migrate && npx tsx watch src/index.ts",
+    "generate": "npx prisma generate",
     "container": "docker compose up",
     "getInContainer": "docker compose exec -it petcare_api /bin/bash",
     "migrate": "npx prisma migrate deploy",
