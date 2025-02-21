@@ -52,3 +52,19 @@ export const registerMoodDiarySchema = z.object({
     date: z
         .date({required_error: "A data é obrigatória"}) 
 })
+
+export const registerAppointmentSchema = z.object({
+    name: z
+        .string({ required_error: "O nome é requerido" })
+        .min(1, { message: "O nome não pode estar vazio" }),
+    location: z
+        .string({ required_error: "O local do compromisso é requerido"})
+        .min(1, {message: "O local não pode estar vazio"}),
+    type: z
+        .enum(["VACINA", "CONSULTA", "REMEDIO"],{ 
+            required_error: "O tipo é obrigatório",
+            invalid_type_error: "O tipo deve ser um dos valores permitidos",
+        }),
+    scheduledDate: z
+        .date({required_error: "A data é obrigatória"}) 
+});
