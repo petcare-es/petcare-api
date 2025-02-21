@@ -1,5 +1,5 @@
 services:
-  petcare_api:
+  api:
     container_name: petcare_api
     build:
       context: .
@@ -15,7 +15,7 @@ services:
     volumes:
       - .:/usr/app
 
-  petcare_db:
+  database:
     container_name: petcare_db
     image: postgres:13
     environment:
