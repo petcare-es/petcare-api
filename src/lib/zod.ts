@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+import { MeasurementUnits } from "types/FoodDiaryType";
+import { Mood } from "types/MoodDiaryType";
+
 export const authUserSchema = z.object({
     email: z
         .string({ required_error: "O e-mail é requerido" })
@@ -45,7 +48,7 @@ export const registerVaccineSchema = z.object({
 
 export const registerMoodDiarySchema = z.object({
     mood: z
-        .enum(["NERVOSO", "FELIZ", "CANSADO", "ANCIOSO", "CARINHOSO", "TRISTE"],{ 
+        .nativeEnum(Mood,{ 
             required_error: "O humor é obrigatório",
             invalid_type_error: "O humor deve ser um dos valores permitidos",
         }),
@@ -67,4 +70,17 @@ export const registerAppointmentSchema = z.object({
         }),
     scheduledDate: z
         .date({required_error: "A data é obrigatória"}) 
+});
+
+export const registerFoodDiarySchema = z.object({
+    amout: z
+        .number({ required_error: "A quantidade é obrigatória" })
+        .positive({ message: "A quantidade deve ser maior que zero" }),
+    unit: z.nativeEnum(MeasurementUnits, {
+        required_error: "A unidade de medida é obrigatório",
+        invalid_type_error: "A unidade de medida deve ser um dos valores permitidos"
+    }),
+    date: z
+        .date({ required_error: "A data é obrigatória" }) 
+
 });
