@@ -1,10 +1,10 @@
 import BaseType from "./BaseType";
 
 export enum MeasurementUnits {
-    LITROS,
-    MILILITROS,
-    GRAMAS,
-    KILOS
+    LITROS     = "LITROS",
+    MILILITROS = "MILILITROS",
+    GRAMAS     = "GRAMAS",
+    KILOS      = "KILOS"
 }
 
 type FoodDiaryType = {

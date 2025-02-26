@@ -1,12 +1,12 @@
 import BaseType from "./BaseType";
 
 export enum Mood {
-    NERVOSO,
-    FELIZ,
-    CANSADO,
-    ANCIOSO,
-    CARINHOSO,
-    TRISTE
+    NERVOSO   = "NERVOSO",
+    FELIZ     = "FELIZ",
+    CANSADO   = "CANSADO",
+    ANCIOSO   = "ANCIOSO",
+    CARINHOSO = "CARINHOSO",
+    TRISTE    = "TRISTE"
 }
 
 type MoodDiaryType = {
