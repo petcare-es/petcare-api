@@ -1,8 +1,7 @@
 import PetRepository from "repository/interface/PetRepository";
 import MoodDiaryRepository from "repository/interface/MoodDiaryRepository"
 import ArgumentNotValidError from "./error/ArgumentNotValidError";
-import MoodDiaryType from "types/MoodDiaryType";
-import { Mood } from "@prisma/client";
+import MoodDiaryType, { Mood } from "types/MoodDiaryType";
 
 type FindMoodDiaryByOwnerRequest = {
     petId: string;

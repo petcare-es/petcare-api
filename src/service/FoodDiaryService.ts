@@ -1,8 +1,7 @@
 import PetRepository from "repository/interface/PetRepository";
 import FoodDiaryRepository from "repository/interface/FoodDiaryRepository"
 import ArgumentNotValidError from "./error/ArgumentNotValidError";
-import FoodDiaryType from "types/FoodDiaryType";
-import { MeasurementUnits } from "@prisma/client";
+import FoodDiaryType, { MeasurementUnits } from "types/FoodDiaryType";
 
 type FindFoodDiaryByOwnerRequest = {
     petId: string;
