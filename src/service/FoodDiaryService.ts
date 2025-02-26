@@ -20,7 +20,7 @@ type FoodDiaryCreateServiceRequest = {
 };
 
 type FoodDiaryCreateServiceResponse = {
-    FoodDiary: FoodDiaryType;
+    foodDiary: FoodDiaryType;
 }
 
 export default class FoodDiaryService {
@@ -59,14 +59,14 @@ export default class FoodDiaryService {
             throw new ArgumentNotValidError("O pet não existe!");
         }
 
-        const FoodDiary = await this.repository.create({
+        const foodDiary = await this.repository.create({
             unit,
             amout,
             petId,
             date
         });
 
-        return { FoodDiary };
+        return { foodDiary };
     }
 
 }
