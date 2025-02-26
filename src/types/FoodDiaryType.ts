@@ -1,5 +1,11 @@
 import BaseType from "./BaseType";
-import { MeasurementUnits } from "@prisma/client";
+
+export enum MeasurementUnits {
+    LITROS,
+    MILILITROS,
+    GRAMAS,
+    KILOS
+}
 
 type FoodDiaryType = {
 
