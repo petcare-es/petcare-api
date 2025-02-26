@@ -6,7 +6,7 @@ import ArgumentNotValidError from '../../error/ArgumentNotValidError';
 import { describe, it, expect, beforeEach } from 'vitest';
 import MoodDiaryInMemoryRepository from '../../../repository/inMemory/MoodDiaryInMemoryRepostory';
 import MoodDiaryService from '../../MoodDiaryService';
-import { Mood } from '@prisma/client';
+import { Mood } from '../../../types/MoodDiaryType';
 
 describe('Register service', () => {
     let moodDiaryRepository: MoodDiaryInMemoryRepository;
@@ -64,7 +64,7 @@ describe('Register service', () => {
     it('should not create a mood diary with an invalid mood', async () => {
         await expect(moodDiaryService.create({
             petId: 'some-pet-id',
-            mood: "INVALIDO" as Mood,
+            mood: "INVALIDO" as unknown as Mood,
             date: new Date()
         })).rejects.toBeInstanceOf(ArgumentNotValidError);
     });
