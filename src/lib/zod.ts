@@ -87,3 +87,13 @@ export const registerFoodDiarySchema = z.object({
         .date({ required_error: "A data é obrigatória" })
 
 });
+
+export const registerWeightDiarySchema = z.object({
+    weight: z
+        .number({ required_error: "O peso é obrigatório" })
+        .positive({ message: "O peso deve ser maior que zero" }),
+    date: z
+        .coerce
+        .date({ required_error: "A data é obrigatória" })
+
+});
