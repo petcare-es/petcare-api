@@ -38,6 +38,7 @@ model Pet {
   vaccines          Vaccine[]
   appointments      Appointment[]
   moods             MoodDiary[]
+  foods             FoodDiary[]
 
   @@map("pets")
 }
@@ -55,7 +56,7 @@ model Vaccine {
   @@map("vaccines")
 }
 
-enum Mood{
+enum Mood {
   NERVOSO
   FELIZ
   CANSADO
@@ -99,4 +100,25 @@ model Appointment {
   owner             Pet               @relation(fields: [petId], references: [id])
 
   @@map("appointments")
+}
+
+enum MeasurementUnits {
+  LITROS
+  MILILITROS
+  GRAMAS
+  KILOS
+}
+
+model FoodDiary {
+  id                String            @id @default(uuid())
+  amout             Int
+  unit              MeasurementUnits
+  petId             String
+  date              DateTime        
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("foods") 
 }

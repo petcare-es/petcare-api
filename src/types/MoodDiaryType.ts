@@ -1,10 +1,20 @@
 import BaseType from "./BaseType";
-import { Mood } from "@prisma/client";
+
+export enum Mood {
+    NERVOSO   = "NERVOSO",
+    FELIZ     = "FELIZ",
+    CANSADO   = "CANSADO",
+    ANCIOSO   = "ANCIOSO",
+    CARINHOSO = "CARINHOSO",
+    TRISTE    = "TRISTE"
+}
 
 type MoodDiaryType = {
     mood: Mood; 
     petId: string;
     date: Date;
 } & BaseType;
+
+
 
 export default MoodDiaryType;
