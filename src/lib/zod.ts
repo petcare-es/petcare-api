@@ -53,7 +53,8 @@ export const registerMoodDiarySchema = z.object({
             invalid_type_error: "O humor deve ser um dos valores permitidos",
         }),
     date: z
-        .date({required_error: "A data é obrigatória"}) 
+        .coerce
+        .date({ required_error: "A data é obrigatória" })
 })
 
 export const registerAppointmentSchema = z.object({
@@ -69,7 +70,8 @@ export const registerAppointmentSchema = z.object({
             invalid_type_error: "O tipo deve ser um dos valores permitidos",
         }),
     scheduledDate: z
-        .date({required_error: "A data é obrigatória"}) 
+        .coerce
+        .date({ required_error: "A data é obrigatória" })
 });
 
 export const registerFoodDiarySchema = z.object({
@@ -81,6 +83,7 @@ export const registerFoodDiarySchema = z.object({
         invalid_type_error: "A unidade de medida deve ser um dos valores permitidos"
     }),
     date: z
-        .date({ required_error: "A data é obrigatória" }) 
+        .coerce
+        .date({ required_error: "A data é obrigatória" })
 
 });
