@@ -7,7 +7,7 @@ const petController = new PetController();
 
 petsRoutes.use(ensureAuthentication);
 
-petsRoutes.post("/register/:id", petController.register);
-petsRoutes.get("/owner/:id", petController.findByOwner);
+petsRoutes.post("/register", petController.register);
+petsRoutes.get("/owner", petController.findByOwner);
 
 export default petsRoutes;
