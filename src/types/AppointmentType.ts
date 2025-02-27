@@ -1,6 +1,10 @@
 import BaseType from "./BaseType";
-import { AppointmentTypes } from "@prisma/client";
 
+export enum AppointmentTypes {
+    VACINA   = 'VACINA',
+    CONSULTA = 'CONSULTA',
+    REMEDIO  = 'REMEDIO'
+}
 
 type AppointmentType = {
     name: string;

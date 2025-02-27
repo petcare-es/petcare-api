@@ -1,8 +1,7 @@
 import PetRepository from "repository/interface/PetRepository";
 import ArgumentNotValidError from "./error/ArgumentNotValidError";
 import AppointmentRepository from "repository/interface/AppointmentRepository";
-import AppointmentType from "types/AppointmentType";
-import { AppointmentTypes } from "@prisma/client";
+import AppointmentType, { AppointmentTypes } from "types/AppointmentType";
 
 type AppointmentCreateServiceRequest = {
     name: string;
