@@ -1,3 +1,4 @@
+import { AppointmentTypes } from 'types/AppointmentType';
 import AppointmentInMemoryRepository from '../../../repository/inMemory/AppointmentInMemoryRepository';
 import PetInMemoryRepository from '../../../repository/inMemory/PetInMemoryRepository';
 import UserInMemoryRepository from '../../../repository/inMemory/UserInMemoryRepository';
@@ -52,7 +53,7 @@ describe('Register service', () => {
         name: "Consulta da Luna",
         petId: pet.id,
         scheduledDate: new Date(),
-        type: "CONSULTA"
+        type: "CONSULTA" as unknown as AppointmentTypes
       });
 
       expect(appointment.name).toBe('Consulta da Luna');
@@ -68,7 +69,7 @@ describe('Register service', () => {
               location: "SobralCity",
               name: "Consulta da Luna",
               scheduledDate: new Date(),
-              type: "CONSULTA"
+              type: "CONSULTA" as unknown as AppointmentTypes
             });
         }).rejects.toBeInstanceOf(ArgumentNotValidError);
     });
