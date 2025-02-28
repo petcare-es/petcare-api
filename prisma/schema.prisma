@@ -39,6 +39,7 @@ model Pet {
   appointments      Appointment[]
   moods             MoodDiary[]
   foods             FoodDiary[]
+  weights           WeightDiary[]
 
   @@map("pets")
 }
@@ -121,4 +122,17 @@ model FoodDiary {
   owner             Pet               @relation(fields: [petId], references: [id])
 
   @@map("foods") 
+}
+
+model WeightDiary {
+  id                String            @id @default(uuid())
+  weight            Float
+  petId             String
+  date              DateTime
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("weights")
 }
