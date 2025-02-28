@@ -9,7 +9,7 @@ import ArgumentNotValidError from '../../../service/error/ArgumentNotValidError'
 import { describe, it, expect, beforeEach} from 'vitest';
 import MoodDiaryInMemoryRepository from '../../../repository/inMemory/MoodDiaryInMemoryRepostory';
 import MoodDiaryService from '../../../service/MoodDiaryService';
-import { Mood } from '@prisma/client';
+import { Mood } from '../../../types/MoodDiaryType';
 
 describe('List MoodDiaries Service', () => {
     let petRepository: PetInMemoryRepository;

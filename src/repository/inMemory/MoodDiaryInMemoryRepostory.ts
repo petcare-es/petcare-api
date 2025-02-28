@@ -1,5 +1,4 @@
 import { randomBytes } from "crypto";
-import VaccineType from "types/VaccineType";
 import MoodDiaryRepository from "repository/interface/MoodDiaryRepository";
 import MoodDiaryType from "types/MoodDiaryType";
 

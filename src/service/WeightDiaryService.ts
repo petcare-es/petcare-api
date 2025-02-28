@@ -60,6 +60,10 @@ export default class WeightDiaryService {
         if(isNaN(date.getTime())){
             throw new ArgumentNotValidError("A data é invalida");
         }
+
+        if(weight < 0) {
+            throw new ArgumentNotValidError("O peso deve ser maior que zero")
+        }
         const weightDiary = await this.repository.create({
             petId,
             weight,
