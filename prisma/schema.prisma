@@ -1,0 +1,138 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String            @id @default(uuid())
+  name              String
+  email             String            @unique
+  password          String
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  pets              Pet[]
+
+  @@map("users")
+}
+
+model Pet {
+  id                String            @id @default(uuid())
+  name              String
+  ownerId           String
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             User              @relation(fields: [ownerId], references: [id])
+  vaccines          Vaccine[]
+  appointments      Appointment[]
+  moods             MoodDiary[]
+  foods             FoodDiary[]
+  weights           WeightDiary[]
+
+  @@map("pets")
+}
+
+model Vaccine {
+  id                String            @id @default(uuid())
+  name              String
+  location          String
+  petId             String
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("vaccines")
+}
+
+enum Mood {
+  NERVOSO
+  FELIZ
+  CANSADO
+  ANCIOSO
+  CARINHOSO
+  TRISTE
+
+}
+
+model MoodDiary {
+  id                String            @id @default(uuid())
+  mood              Mood
+  petId             String
+  date              DateTime        
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("moods")
+}
+
+enum AppointmentTypes {
+  VACINA
+  CONSULTA
+  REMEDIO
+}
+
+model Appointment {
+  id                String            @id @default(uuid())
+
+  name              String
+  location          String
+  petId             String
+  type              AppointmentTypes
+  scheduledDate     DateTime
+
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("appointments")
+}
+
+enum MeasurementUnits {
+  LITROS
+  MILILITROS
+  GRAMAS
+  KILOS
+}
+
+model FoodDiary {
+  id                String            @id @default(uuid())
+  amout             Int
+  unit              MeasurementUnits
+  petId             String
+  date              DateTime        
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("foods") 
+}
+
+model WeightDiary {
+  id                String            @id @default(uuid())
+  weight            Float
+  petId             String
+  date              DateTime
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  owner             Pet               @relation(fields: [petId], references: [id])
+
+  @@map("weights")
+}
